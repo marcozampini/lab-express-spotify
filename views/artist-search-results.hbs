@@ -1,0 +1,17 @@
+<h2>Artists</h2>
+<div class='list-artists'>
+
+  {{#each artists}}
+    <div class='artist'>
+      <h3>{{this.name}}</h3>
+      <picture>
+        <img src='{{this.imageUrl}}' alt='{{this.name}} image' />
+      </picture>
+      <a href='/artists/{{this.id}}'>View albums</a>
+    </div>
+  {{/each}}
+</div>
+/* display name, image, and button (or link) to show the albums for a particular
+artist on a new view (for now just create the button/link and we will take care
+of the rest in the next step). Again, styling is not your priority, so let's
+move to the next step.*/

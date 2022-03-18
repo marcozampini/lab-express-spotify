@@ -17,6 +17,7 @@ const spotifyApi = new SpotifyWebApi({
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
 })
+
 // Retrieve an access token
 spotifyApi
   .clientCredentialsGrant()
@@ -26,7 +27,31 @@ spotifyApi
   )
 
 // Our routes go here:
+app.get('/', (request, response, next) => {
+  response.render('home')
+})
 
+app.get('/artist-search', (request, response, next) => {
+  const { artist } = request.query
+
+  spotifyApi
+    .searchArtists(artist)
+    .then((data) => {
+      //console.log('Search artists by query', data.body.artists.items)
+      const artists = data.body.artists.items.map((art) => {
+        return {
+          id: art.id,
+          name: art.name,
+          imageUrl: art.images[0] ? art.images[0].url : null,
+        }
+      })
+      response.render('artist-search-results', { artists })
+      console.log(artists)
+    })
+    .catch((err) =>
+      console.log('The error while searching artists occurred: ', err)
+    )
+})
 app.listen(3000, () =>
   console.log('My Spotify project running on port 3000 🎧 🥁 🎸 🔊')
 )
