@@ -82,6 +82,38 @@ app.get('/albums/:artistId', (request, response, next) => {
     )
 })
 
+app.get('/album/:albumId', (request, response, next) => {
+  const albumId = request.params.albumId
+
+  spotifyApi
+    .getAlbum(albumId)
+    .then((data) => {
+      console.log('Album', data.body)
+      const albumName = data.body.name
+      const artistsName = data.body.artists
+
+      spotifyApi
+        .getAlbumTracks(albumId)
+        .then((data) => {
+          //console.log('Tracks', data.body.items)
+          const tracks = data.body.items.map((trk) => {
+            return {
+              id: trk.id,
+              name: trk.name,
+              previewUrl: trk.preview_url ? trk.preview_url : null,
+            }
+          })
+          response.render('album', { albumName, artistsName, tracks })
+        })
+        .catch((err) =>
+          console.log('The error while searching the tracks occurred: ', err)
+        )
+    })
+    .catch((err) =>
+      console.log('The error while searching the album occurred: ', err)
+    )
+})
+
 app.listen(3000, () =>
   console.log('My Spotify project running on port 3000 🎧 🥁 🎸 🔊')
 )

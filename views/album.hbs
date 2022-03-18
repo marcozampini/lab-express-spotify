@@ -1,0 +1,19 @@
+<h2>Tracks of the album
+  {{albumName}}
+  by
+  {{#each artistsName}}{{this.name}} {{/each}}</h2>
+<div class='list-tracks'>
+  {{#each tracks}}
+    <div class='tracks'>
+      <h3>{{this.name}}</h3>
+      <p>
+        {{this.id}}
+      </p>
+      <audio controls src='{{this.previewUrl}}'>
+        Your browser does not support the
+        <code>audio</code>
+        element.
+      </audio>
+    </div>
+  {{/each}}
+</div>
