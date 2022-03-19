@@ -45,7 +45,7 @@ app.get('/artist-search', (request, response, next) => {
           imageUrl: art.images[0] ? art.images[0].url : null,
         }
       })
-      response.render('artist-search-results', { artists })
+      response.render('artist-search-results', { artist, artists })
     })
     .catch((err) =>
       console.log('The error while searching artists occurred: ', err)
