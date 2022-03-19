@@ -63,3 +63,14 @@ h2 {
   height: 20rem;
   object-fit: cover;
 }
+.list-tracks {
+  margin: 0 auto;
+}
+td.track-name {
+  min-width: 40rem;
+  padding: 1rem;
+  background-color: #f6f6f6;
+}
+td.audio {
+  background-color: #f6f6f6;
+}

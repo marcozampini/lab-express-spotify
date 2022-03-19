@@ -37,7 +37,7 @@ app.get('/artist-search', (request, response, next) => {
   spotifyApi
     .searchArtists(artist)
     .then((data) => {
-      console.log('Artists', data.body.artists)
+      //console.log('Artists', data.body.artists)
       const artists = data.body.artists.items.map((art) => {
         return {
           id: art.id,
@@ -88,7 +88,7 @@ app.get('/album/:albumId', (request, response, next) => {
   spotifyApi
     .getAlbum(albumId)
     .then((data) => {
-      console.log('Album', data.body)
+      //console.log('Album', data.body)
       const albumName = data.body.name
       const artistsName = data.body.artists
 

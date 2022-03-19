@@ -2,18 +2,21 @@
   {{albumName}}
   by
   {{#each artistsName}}{{this.name}} {{/each}}</h2>
-<div class='list-tracks'>
+<table class='list-tracks'>
+  <tr>
+    <th>Title</th>
+    <th>Listen</th>
+  </tr>
   {{#each tracks}}
-    <div class='tracks'>
-      <h3>{{this.name}}</h3>
-      <p>
-        {{this.id}}
-      </p>
-      <audio controls src='{{this.previewUrl}}'>
-        Your browser does not support the
-        <code>audio</code>
-        element.
-      </audio>
-    </div>
+    <tr class='tracks'>
+      <td class="track-name">{{this.name}}</td>
+      <td class="audio">
+        <audio controls src='{{this.previewUrl}}'>
+          Your browser does not support the
+          <code>audio</code>
+          element.
+        </audio>
+      </td>
+    </tr>
   {{/each}}
 </div>
